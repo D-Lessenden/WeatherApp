@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WeatherService } from './services/weather.service';
+import { WeatherData } from './models/weather.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'weather';
-}
+export class AppComponent implements OnInit {
+  
+    constructor(private weatherService: WeatherService) {}
+  
+    ngOnInit(): void {
+        this.weatherService.getWeatherData('Denver')
+        .subscribe({
+          next: (response) => {
+            console.log(response)
+          }
+        });
+    }
+  }
