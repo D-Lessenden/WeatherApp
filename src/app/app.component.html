@@ -1,13 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="weatherData">
   <div class="upper-data">
-    <img src="../assets/hot.png"  *ngIf="14 > 15">
-    <img src="../assets/cold.png"  *ngIf="14 <= 15">
-    <!-- <img src="../assets/hot.png"  [@if]="14 > 15"> -->
-    <!-- <img src="../assets/cold.png"  [@if]="14 <= 15"> -->
+    <img src="../assets/hot.png"  *ngIf="weatherData.main.temp > 80.0" >
+    <img src="../assets/cold.png"  *ngIf="weatherData.main.temp < 80.0">
 
     <div class="weather-data">
       <div class="location">Denver</div>
-      <div class="temperature">14°C</div>
+      <div class="temperature">{{ weatherData.main.temp| number: '1.1-1' }}°F</div>
 
     </div>
   </div>
@@ -23,7 +21,7 @@
           <span>min</span>
         </div>
         <div class="info-block-value">
-          10°C
+          {{weatherData.main.temp_min}}°F
         </div>
       </div>
 
@@ -33,7 +31,7 @@
           <span>max</span>
         </div>
         <div class="info-block-value">
-          20°C
+          {{weatherData.main.temp_max}}°F
         </div>
       </div>
 
@@ -43,7 +41,7 @@
           <span>humidity</span>
         </div>
         <div class="info-block-value">
-          77%
+          {{weatherData.main.humidity}}%
         </div>
       </div>
 
@@ -53,7 +51,7 @@
           <span>wind</span>
         </div>
         <div class="info-block-value">
-          11 km/h
+          {{weatherData.wind.speed}} mph
         </div>
       </div>
     </div>
